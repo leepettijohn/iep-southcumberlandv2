@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>South Cumberland Community Atlas · 2026</title>
+<style>
+  /* ---------- IEP brand-frame stub (do not modify in production) ---------- */
+  :root {
+    --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+    --paper: #f5f1e8;
+    --white: #fbfaf6;
+    --soft: #e6e1d5;
+    --ink: #1a1a1a;
+    --body: #2c2c2c;
+    --mid: #555;
+    --mute: #8c8c8c;
+
+    --navy: #1f3a5f;
+    --navy-deep: #16304d;
+    --amber: #ba7517;
+    --teal: #1d9e75;
+    --coral: #b46659;
+
+    /* Theme accents (priority categories) */
+    --theme-economy: #6b8e5a;
+    --theme-healthy: #b46659;
+    --theme-place: #5a7a9e;
+    --theme-engaged: #c4a548;
+    --theme-economy-bg: #e6ede0;
+    --theme-healthy-bg: #f1e0dc;
+    --theme-place-bg: #dde5ed;
+    --theme-engaged-bg: #f1e9d1;
+
+    /* Confidence pillars */
+    --theme-commitment: #3a5a7e;
+    --theme-vision: #4a6b3d;
+    --theme-leadership: #8a4438;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--body);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    background: var(--navy);
+    color: var(--white);
+    padding: 0.85rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .topbar .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+  }
+  .topbar .brand-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--white);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .topbar .brand-name {
+    font-weight: 600;
+  }
+  .topbar .brand-sub {
+    color: rgba(251, 250, 246, 0.7);
+  }
+  .topbar nav {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+  }
+  .topbar nav a {
+    color: rgba(251, 250, 246, 0.85);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .topbar nav a:hover {
+    color: var(--white);
+  }
+
+  /* ---------- Hero band ---------- */
+  .hero {
+    background: var(--white);
+    border-bottom: 1px solid var(--soft);
+    padding: 3rem 1.5rem 2.5rem;
+  }
+  .hero-inner {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+  .hero .eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 2.6rem;
+    color: var(--ink);
+    margin: 0 0 0.6rem;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+  .hero .lede {
+    font-size: 1.05rem;
+    color: var(--mid);
+    line-height: 1.6;
+    max-width: 44rem;
+  }
+
+  /* ---------- Content area ---------- */
+  .container {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+  section {
+    margin-bottom: 3.5rem;
+  }
+  section:last-child {
+    margin-bottom: 0;
+  }
+  h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--navy);
+  }
+
+  /* ---------- Highlight stat row ---------- */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--soft);
+    border-top: 3px solid var(--navy);
+    border-radius: 4px;
+    padding: 1.25rem 1.25rem 1rem;
+  }
+  .stat-card .stat-value {
+    font-family: var(--serif);
+    font-size: 2.1rem;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .stat-card .stat-label {
+    font-size: 0.78rem;
+    color: var(--mute);
+    line-height: 1.4;
+  }
+
+  /* ---------- Overall report card (featured) ---------- */
+  .overall-card {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .overall-card:hover {
+    background: var(--navy-deep);
+  }
+  .overall-card .oc-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(251, 250, 246, 0.7);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .overall-card h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin: 0 0 0.4rem;
+    color: var(--white);
+    line-height: 1.25;
+  }
+  .overall-card p {
+    margin: 0;
+    color: rgba(251, 250, 246, 0.85);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: 38rem;
+  }
+  .overall-card .oc-arrow {
+    font-size: 1.4rem;
+    color: var(--white);
+    opacity: 0.8;
+  }
+
+  /* ---------- Area cards grid ---------- */
+  .area-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .area-card {
+    background: var(--white);
+    border: 1px solid var(--soft);
+    border-radius: 4px;
+    padding: 1.4rem 1.5rem 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+  .area-card:hover {
+    border-color: var(--navy);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(31, 58, 95, 0.08);
+  }
+  .area-card .ac-name {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.01em;
+  }
+  .area-card .ac-meta {
+    font-size: 0.78rem;
+    color: var(--mute);
+    margin-bottom: 0.875rem;
+    display: flex;
+    gap: 0.875rem;
+  }
+  .area-card .ac-meta .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--mute);
+    align-self: center;
+  }
+  .area-card .ac-priority {
+    font-size: 0.83rem;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+  .area-card .ac-priority strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ---------- Cross-cutting findings ---------- */
+  .findings {
+    background: var(--white);
+    border: 1px solid var(--soft);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+  }
+  .findings-list {
+    display: grid;
+    gap: 1rem;
+  }
+  .finding-row {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+  .finding-num {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--navy);
+    font-weight: 400;
+  }
+  .finding-text {
+    font-size: 0.92rem;
+    color: var(--body);
+    line-height: 1.55;
+  }
+  .finding-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ---------- About / methodology ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .about-card {
+    background: var(--white);
+    border: 1px solid var(--soft);
+    border-radius: 4px;
+    padding: 1.4rem 1.5rem;
+  }
+  .about-card h3 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 0 0 0.6rem;
+  }
+  .about-card p {
+    font-size: 0.88rem;
+    color: var(--body);
+    line-height: 1.55;
+    margin: 0 0 0.6rem;
+  }
+  .about-card p:last-child {
+    margin-bottom: 0;
+  }
+  .about-card a {
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(31, 58, 95, 0.3);
+    transition: border-color 0.15s;
+  }
+  .about-card a:hover {
+    border-color: var(--navy);
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--white);
+    border-top: 1px solid var(--soft);
+    padding: 2rem 1.5rem;
+    margin-top: 3rem;
+  }
+  .footer-inner {
+    max-width: 64rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--mute);
+  }
+  footer a {
+    color: var(--mute);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  footer a:hover {
+    color: var(--navy);
+    border-bottom-color: var(--navy);
+  }
+
+  @media (max-width: 760px) {
+    .hero { padding: 2rem 1.25rem 1.75rem; }
+    .hero h1 { font-size: 2rem; }
+    .container { padding: 2rem 1.25rem 3rem; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .area-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .overall-card { grid-template-columns: 1fr; }
+    .overall-card .oc-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- TOP BAR                                                          -->
+<!-- ============================================================= -->
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-mark">S</div>
+    <div>
+      <div class="brand-name">South Cumberland Community Fund</div>
+      <div class="brand-sub">2026 Community Atlas</div>
+    </div>
+  </div>
+  <nav>
+    <a href="#areas">Areas</a>
+    <a href="#findings">Findings</a>
+    <a href="#about">About</a>
+  </nav>
+</div>
+
+<!-- ============================================================= -->
+<!-- HERO                                                             -->
+<!-- ============================================================= -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">2026 Edition · Published April 2026</div>
+    <h1>What our region is saying — and what we're doing about it</h1>
+    <p class="lede">The Community Atlas gathers what residents across the South Cumberland region told us this year: where they're proud, where they're worried, and what they want their leaders to focus on next. Use the directory below to read your area's report, or start with the regional overview.</p>
+  </div>
+</header>
+
+<!-- ============================================================= -->
+<!-- MAIN                                                             -->
+<!-- ============================================================= -->
+<main class="container">
+
+  <!-- Cross-area highlight stats -->
+  <section>
+    <h2>2026 at a glance</h2>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value">182</div>
+        <div class="stat-label">Residents who shared their voice across 5 communities</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">95</div>
+        <div class="stat-label">Volunteers who said "I want to help" (52% of respondents)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">44%</div>
+        <div class="stat-label">Top shared priority: <strong style="color:var(--ink);">Affordable housing</strong></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">36%</div>
+        <div class="stat-label">Most-named metric: <strong style="color:var(--ink);">Food insecurity</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured: Overall report card -->
+  <section>
+    <h2>Regional overview</h2>
+    <a class="overall-card" href="./overall/">
+      <div>
+        <div class="oc-eyebrow">All five communities · 182 voices</div>
+        <h3>Read the South Cumberland Overall Report</h3>
+        <p>The cross-area report compares confidence scores, shared priorities, and year-over-year movement across every community in the region. Start here for the regional picture, or visit individual area reports below.</p>
+      </div>
+      <div class="oc-arrow">→</div>
+    </a>
+  </section>
+
+  <!-- Per-area directory -->
+  <section id="areas">
+    <h2>Areas in this region</h2>
+    <div class="area-grid">
+
+      <a class="area-card" href="beersheba-atlas.html">
+        <div class="ac-name">Beersheba Springs - Altamont</div>
+        <div class="ac-meta">
+          <span>37 voices in 2026</span>
+          <span class="dot"></span>
+          <span>2 years of data</span>
+        </div>
+        <div class="ac-priority">Top priority: <strong>Affordable housing</strong> (39%)</div>
+      </a>
+
+      <a class="area-card" href="./tracy-city-coalmont/">
+        <div class="ac-name">Tracy City - Coalmont</div>
+        <div class="ac-meta">
+          <span>59 voices in 2026</span>
+          <span class="dot"></span>
+          <span>2 years of data</span>
+        </div>
+        <div class="ac-priority">Top priority: <strong>Workforce training</strong> (likely — pending area report)</div>
+      </a>
+
+      <a class="area-card" href="./sewanee-monteagle-pelham/">
+        <div class="ac-name">Sewanee - Monteagle - Pelham</div>
+        <div class="ac-meta">
+          <span>61 voices in 2026</span>
+          <span class="dot"></span>
+          <span>2 years of data</span>
+        </div>
+        <div class="ac-priority">Top priority: <strong>Affordable housing</strong> (likely — pending area report)</div>
+      </a>
+
+      <a class="area-card" href="./gruetli-laager-palmer/">
+        <div class="ac-name">Gruetli - Laager and Palmer</div>
+        <div class="ac-meta">
+          <span>23 voices in 2026</span>
+          <span class="dot"></span>
+          <span>2 years of data</span>
+        </div>
+        <div class="ac-priority">Top priority: <strong>—</strong> (pending area report)</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Cross-cutting findings -->
+  <section id="findings">
+    <h2>What residents share across the region</h2>
+    <div class="findings">
+      <div class="findings-list">
+        <div class="finding-row">
+          <span class="finding-num">1.</span>
+          <div class="finding-text"><strong>Affordable housing leads everywhere.</strong> 44% of respondents across all five areas named it a top priority — the most consistent finding in the 2026 cycle.</div>
+        </div>
+        <div class="finding-row">
+          <span class="finding-num">2.</span>
+          <div class="finding-text"><strong>Workforce training is close behind.</strong> 43% named it a priority — driven heavily by parents and young adults across the region.</div>
+        </div>
+        <div class="finding-row">
+          <span class="finding-num">3.</span>
+          <div class="finding-text"><strong>Food insecurity is the metric people most want to move.</strong> 36% — more than one in three — named it as the indicator they hope to see improve in the next 1–3 years.</div>
+        </div>
+        <div class="finding-row">
+          <span class="finding-num">4.</span>
+          <div class="finding-text"><strong>More than half want to help.</strong> 95 of 182 respondents (52%) provided contact information indicating they want to volunteer or stay involved.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About this work</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>How the data was collected</h3>
+        <p>Residents across the five South Cumberland communities completed a 49-question survey in early 2026. Questions covered economic perceptions, community confidence, priority programs and metrics, and basic demographics. Surveys were distributed through community foundations, libraries, schools, and churches.</p>
+        <p>Year-over-year comparisons draw from the matching 2025 cycle. Demographic context comes from U.S. Census ACS 5-year averages, the Tennessee Department of Education, and the Tennessee Department of Revenue.</p>
+      </div>
+      <div class="about-card">
+        <h3>How to use the reports</h3>
+        <p>Each area page has three views. The <strong>Resident view</strong> is the public report — a letter from the foundation, what residents said in their own words, and the priorities the data points toward. The <strong>Director view</strong> is for foundation staff and contains analytical material; access is restricted. The <strong>Practitioner view</strong> is a methodology dossier for journalists, researchers, and program staff who want to dig into the numbers.</p>
+        <p>Questions about the work? <a href="mailto:hello@scfoundation.org">hello@scfoundation.org</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>South Cumberland Community Fund · 2026 Community Atlas · Powered by <a href="https://innovationeconomy.partners">Innovation Economy Partners</a></div>
+    <div><a href="#">Privacy</a> · <a href="#">Methodology</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
